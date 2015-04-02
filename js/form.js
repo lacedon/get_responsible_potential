@@ -41,14 +41,16 @@ window.onload = function (){
     console.log('split_values', split_values);
 
     function createMatrix(){
-      var out = [],
-          itr = 0;
+      var out = [], itr;
       for(var r in split_values[value.a[0]][n]){
-        out.push([]);
+        itr = 0;
         for(var i in split_values[value.a[0]][n][r]){
+          if(out[itr] === undefined){
+            out.push([]);
+          }
           out[itr].push(split_values[value.a[0]][n][r][i].max.coordinate);
+          itr ++;
         }
-        itr ++;
       }
       return out;
     }
