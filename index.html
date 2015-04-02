@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Нахождение потенциала</title>
+
+    <meta charset='utf-8'>
+
+    <link rel='stylesheet' href='css/general.css'>
+    <link rel='stylesheet' href='css/form.css'>
+
+    <script src='lib/tag_function.js'></script>
+    <script src='lib/complex.js'></script>
+    <script src='lib/color.js'></script>
+    <script src='lib/plot.js'></script>
+
+    <script src='js/form.js'></script>
+    <script src='js/get_potential.js'></script>
+    <script src='js/get_split_solution.js'></script>
+  </head>
+  <body>
+    <div id='wrap'>
+      <div id='form' class='clearfix'>
+        <div id='form-alpha' class='enter_val clearfix'>
+          <label for='form-alpha-input'>&alpha;:</label>
+          <input type='text' id='form-alpha-input' pattern='^(-?\d*)?([+-]\d*i)?$' autofocus placeholder='a+bi' autocomplete='off'>
+        </div>
+
+        <div id='form-xi' class='enter_val clearfix'>
+          <label for='form-xi-input-start'>Интервал:</label>
+          <div class='val_groups'>
+            <input type='text' id='form-xi-input-start' pattern='^(-?\d*)?([+-]\d*i)?$' placeholder='a+bi' autocomplete='off'>
+            <input type='text' id='form-xi-input-end' pattern='^(-?\d*)?([+-]\d*i)?$' placeholder='a+bi' autocomplete='off'>
+          </div>
+        </div>
+
+        <div id='form-step' class='enter_val clearfix'>
+          <label for='form-step-input'>Шагов:</label>
+          <input type='range' id='form-step-input' min='2' max='500' value='100' autocomplete='off'>
+        </div>
+
+        <input type='submit' id='form-button' value='Построить' tabindex='5'>
+      </div>
+
+      <div id='print_field'></div>
+    </div>
+  </body>
+</html>

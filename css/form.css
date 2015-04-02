@@ -1,0 +1,53 @@
+body {
+  text-align: center;
+  background: #f7f8fa url('../img/0.jpg') no-repeat top center;
+  background-size: 100%;
+}
+#wrap {
+  margin: 0.8em;
+  display: inline-block;
+}
+#form{
+  padding: 0.8em 0;
+}
+
+.enter_val {
+  padding-left: 0.5em;
+  margin-bottom: 1em;
+}
+.enter_val.error {
+  background: #f0e9ea;
+}
+.enter_val:hover {
+  background: #eaeff5;
+}
+.enter_val.error:hover {
+  background: #f0d0d0;
+}
+
+.enter_val label {
+  float: left;
+  padding: 1em 2em 0 0;
+}
+.enter_val input ,
+.enter_val .val_groups {
+  float: right;
+  width: 15em;
+}
+.enter_val .val_groups input {
+  float: left;
+  width: 7em;
+  margin-right: 1em;
+}
+.enter_val .val_groups input:last-child {
+  margin-right: 0;
+}
+
+#form-button {
+  float: right;
+}
+
+#print_field{
+  margin: 0 auto;
+  display: none;
+}
