@@ -37,18 +37,20 @@ window.onload = function (){
       return;
     }
 
-    split_values = breakup_value(value.a, value.x, n);
+
+    split_values = breakup_value(value.a, value.x, n, split_values);
     console.log('split_values', split_values);
 
     function createMatrix(){
-      var out = [], itr;
-      for(var r in split_values[value.a[0]][n]){
+      var out = [], itr,
+          key = value.a[0] + 'x' + value.x[0] + 'x' + value.x[1];
+      for(var r in split_values[n][key]){
         itr = 0;
-        for(var i in split_values[value.a[0]][n][r]){
+        for(var i in split_values[n][key][r]){
           if(out[itr] === undefined){
             out.push([]);
           }
-          out[itr].push(split_values[value.a[0]][n][r][i].max.coordinate);
+          out[itr].push(split_values[n][key][r][i].max.coordinate);
           itr ++;
         }
       }
