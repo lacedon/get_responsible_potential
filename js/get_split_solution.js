@@ -76,11 +76,11 @@ function breakup_value(a, xi, step_count, split_values){
               for(x_itr = x_str; x_itr < x_end; x_itr += x_step){
                 potential = get_potential(x_itr, split_values[a_key][step_count][xi_r_itr][xi_i_itr].k, split_values[a_key][step_count][xi_r_itr][xi_i_itr].m);
                 // potential = potential ?Math.abs(potential) :0;
-                potential = Math.abs(potential);
+                potential = Math.abs(potential.r);
                 if(comparisons[c_itr] === undefined || comparisons[c_itr].value < potential){
                   comparisons[c_itr] = {
                     value: potential,
-                    coordinate: x_itr,
+                    coordinate: x_itr
                   };
                 }
               }
