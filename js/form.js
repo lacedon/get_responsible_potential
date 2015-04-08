@@ -1,4 +1,6 @@
 window.onload = function (){
+  set_default_values();
+
   var split_values = {};
   document.getElementById('form-button').onclick = function (){
     var
@@ -50,10 +52,17 @@ window.onload = function (){
           if(out[itr] === undefined){
             out.push([]);
           }
-          out[itr].push(split_values[n][key][r][i].max.coordinate);
+          out[itr].push({
+            value:  split_values[n][key][r][i].max.coordinate,
+            a:      split_values[n][key][r][i].max.a,
+            xi:     split_values[n][key][r][i].max.xi,
+            k:      split_values[n][key][r][i].max.k,
+            m:      split_values[n][key][r][i].max.m,
+          });
           itr ++;
         }
       }
+      out.reverse();
       return out;
     }
 
@@ -63,6 +72,6 @@ window.onload = function (){
       palet_place: 'right'
     });
     plot.set_values(createMatrix()).draw();
-    console.log(plot);
+    console.log('plot', plot);
   }
 };

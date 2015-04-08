@@ -16,7 +16,17 @@ function get_k(ln, ls){
   k.push(Comp['+'](b, c));
   k.push(Comp['-'](b, c));
 
-  return [k[0].pow(0.5), k[1].pow(0.5)];
+  k = [k[0].pow(0.5), k[1].pow(0.5)];
+  /*
+    if(     !( k[0].isReal() || Comp['=='](k[0].conjugate(), k[1]) )){
+      k[1] = k[0].conjugate();
+    }
+    else if(!( k[1].isReal() || Comp['=='](k[1].conjugate(), k[0]) )){
+      k[0] = k[1].conjugate();
+    }
+  */
+
+  return k;
 }
 function get_m(ln, k){
   var m  = [],

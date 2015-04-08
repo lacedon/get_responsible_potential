@@ -59,10 +59,7 @@ function breakup_value(a, xi, step_count, split_values){
       if(split_values[step_count][key][xi_r_itr][xi_i_itr] === undefined){
         split_values[step_count][key][xi_r_itr][xi_i_itr] = get_spectral_data(a, new Complex(xi_r_itr, xi_i_itr));
 
-        split_values[step_count][key][xi_r_itr][xi_i_itr].max = {
-          value:      undefined,
-          coordinate: undefined
-        };
+        split_values[step_count][key][xi_r_itr][xi_i_itr].max = {};
 
         comparisons = [];
         for(c_itr = 0; c_itr < comparison_count; c_itr++){
@@ -78,11 +75,15 @@ function breakup_value(a, xi, step_count, split_values){
               for(x_itr = x_str; x_itr < x_end; x_itr += x_step){
                 potential = get_potential(x_itr, split_values[step_count][key][xi_r_itr][xi_i_itr].k, split_values[step_count][key][xi_r_itr][xi_i_itr].m);
                 // potential = potential ?Math.abs(potential) :0;
-                potential = Math.abs(potential.r);
+                potential = potential.r;
                 if(comparisons[c_itr] === undefined || comparisons[c_itr].value < potential){
                   comparisons[c_itr] = {
-                    value: potential,
-                    coordinate: x_itr
+                    value:      potential,
+                    coordinate: x_itr,
+                    a:          a,
+                    xi:         new Complex(xi_r_itr, xi_i_itr),
+                    k:          split_values[step_count][key][xi_r_itr][xi_i_itr].k,
+                    m:          split_values[step_count][key][xi_r_itr][xi_i_itr].m
                   };
                 }
               }
