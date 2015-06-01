@@ -52,6 +52,10 @@ function get_m(ln, k){
 }
 
 function get_spectral_data(a, x){
+  /*var i  = new Complex(0, 1);
+  x = Comp['*'](x, i);
+  a = Comp['*'](a, i);*/
+
   var ln = [x, x.negative().conjugate()],
       ls = [a, a.conjugate()],
       k, m;

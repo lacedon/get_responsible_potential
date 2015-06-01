@@ -1,6 +1,3 @@
-var k = {},
-    m = {};
-
 window.onload = function(){
   set_default_values();
 
@@ -33,40 +30,50 @@ window.onload = function(){
       return;
     }
 
-    if(k[value.a[0]] == undefined){
-      k[value.a[0]] = {};
-    }
-    if(m[value.a[0]] == undefined){
-      m[value.a[0]] = {};
-    }
-
-    if(
-      k[value.a[0]][value.x[0]] == undefined || 
-      m[value.a[0]][value.x[0]] == undefined
-    ){
-      var spectral_data = get_spectral_data(value.a[0], value.x[0]);
-      k[value.a[0]][value.x[0]] = spectral_data.k;
-      m[value.a[0]][value.x[0]] = spectral_data.m;
-    }
-
     var x = [
       Number(document.getElementById('form-interval-input-start').value),
       Number(document.getElementById('form-interval-input-end').value)
     ].sort(),
-    n = Number(document.getElementById('form-step-input').value);
-    step = (x[1] - x[0]) / (n || 1000),
-    p = [],
-    c = new Plot('print_field', {w:600, h:350});
+        n = Number(document.getElementById('form-step-input').value) || 1000,
+        step = (x[1] - x[0]) / n,
+        p = [],
+        plotM = new Plot('print_field-M', {w:600, h:350}),
+        plotL = new Plot('print_field-L', {w:600, h:350});
     for(var i = 0, x = x[0]; i <= n; i += 1, x += step){
       p.push(new Complex(x));
     }
 
-    console.log('> k: ', k[value.a[0]][value.x[0]][0].toString(), ', ', k[value.a[0]][value.x[0]][1].toString());
-    console.log('> m: ', m[value.a[0]][value.x[0]][0].toString(), ', ', m[value.a[0]][value.x[0]][1].toString());
-    c.setParametr(p).setFunction(function(x){
-      return get_potential(x, k[value.a[0]][value.x[0]], m[value.a[0]][value.x[0]]);
-    }).draw();
-    document.getElementById('print_field').style.display = 'block';
-    console.log(c);
+    setTimeout(function(){
+      plotM.setParametr(p).setFunction(function(x){
+        return Marchenko.get_potential(x, value.x[0], value.a[0], step);
+      }).draw();
+      document.getElementById('print_field-M').style.display = 'block';
+      console.log('plotM', plotM);
+    }, 0);
+
+    /*
+    setTimeout(function(){
+      plotL.setParametr(p).setFunction(function(x){
+        return Levitan.get_potential(x, value.x[0], value.a[0], step);
+      }).draw();
+      document.getElementById('print_field-L').style.display = 'block';
+      console.log('plotL', plotL);
+
+
+      var m;
+      for(var i in plotL.fun_out){
+        var e = Math.abs(
+          plotL.fun_out[i].r -
+          plotM.fun_out[i].r
+        );
+        if(m === undefined || e > m){
+          m = e;
+        }
+      }
+      console.log(m);
+    }, 0);
+    */
+
+    console.log('###');
   }
 };
